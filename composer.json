@@ -1,0 +1,14 @@
+{
+    "name": "carpcai/address-parser",
+    "description": "A PHP library covers PHP 5.4 to 7.3, split an address street to street, states, city, zipcode.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Carp Cai",
+            "email": "563998753@qq.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
