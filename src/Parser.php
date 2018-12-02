@@ -25,8 +25,6 @@ class Parser
     public function __construct($country = AddressStruct::US)
     {
         $this->setCountry($country);
-
-//        return $this->_parse($addressString);
     }
 
     public function setCountry($country)
@@ -54,7 +52,7 @@ class Parser
      */
     public function parse($addressString)
     {
-
+        return $this->_parse($addressString);
     }
 
     /**
@@ -66,10 +64,6 @@ class Parser
     private function _parse($addressString, $country = AddressStruct::US)
     {
         //TODO: 根据不同国家生成不同实例
-        return  (new USParser())->split($addressString);
+        return (new USParser())->split($addressString);
     }
 }
-
-$address = Parser::newParse('555 Test Drive, Testville, CA 98773');
-
-var_dump(json_encode($address));
