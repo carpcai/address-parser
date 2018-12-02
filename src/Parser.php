@@ -8,7 +8,7 @@
 
 namespace CarpCai\AddressParser;
 
-use CarpCai\AddressParser\Countries\USParser;
+use CarpCai\AddressParser\Countriess\USParser;
 
 include 'autoloader.php';
 

@@ -6,7 +6,7 @@
  * Time: 10:23 PM
  */
 
-namespace CarpCai\AddressParser\Countries;
+namespace CarpCai\AddressParser\Countriess;
 
 use CarpCai\AddressParser\AddressStruct;
 
