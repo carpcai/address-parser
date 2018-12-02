@@ -6,7 +6,7 @@
  * Time: 10:25 PM
  */
 
-namespace CarpCai\AddressParser\Countriess;
+namespace CarpCai\AddressParser\Countries;
 
 
 interface iParser
