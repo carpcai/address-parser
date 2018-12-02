@@ -15,13 +15,26 @@ class AddressParserTest
      * 测试是否能解析美国的地址
      * CarpCai <2018/12/1 12:40 PM>
      */
-    public function testUSAddressParser()
+    public function testRightUSAddressParse()
     {
         $address = Parser::newParse('555 Test Drive, Testville, CA 98773');
 
-        $this->assertEquals( 'US',  $address['country']);
-        $this->assertEquals( 'CA',  $address['state']);
-        $this->assertEquals( 'Testville',  $address['city']);
-        $this->assertEquals( '555 Test Drive',  $address['addressLine1']);
+        $this->assertEquals( 'US',  $address->country);
+        $this->assertEquals( 'CA',  $address->state);
+        $this->assertEquals( 'California',  $address->state_text);
+        $this->assertEquals( 'Testville',  $address->city);
+        $this->assertEquals( '555 Test Drive',  $address->addressLine1);
+    }
+
+    public function testWrongUSAddressParse()
+    {
+        $address = Parser::newParse('Test Drive, Testville, CA 98773');
+
+        $this->assertEquals( -1,  $address->error_code);
+
+        $address = Parser::newParse('555 Test Drive, Testville, California 98773');
+
+        $this->assertEquals( 'CA',  $address->state_text);
+        $this->assertEquals( 'California',  $address->state_text);
     }
 }

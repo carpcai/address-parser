@@ -12,8 +12,12 @@ class AddressStruct
 {
     const US = 'US';
 
+    public $error_code;
+    public $error_message;
+
     public $country;
     public $state;
+    public $state_text;
     public $city;
     public $addressLine1;
     public $addressLine2;
