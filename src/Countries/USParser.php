@@ -43,7 +43,7 @@ class USParser extends BaseCountryParser implements iParser
     private function _checkAddress(&$address)
     {
         //check state
-        $statesMap = json_decode(file_get_contents('Json/US_states.json'), true);
+        $statesMap = json_decode(file_get_contents(__DIR__ . '/../Json/US_states.json'), true);
         $state = $address->state;
         if(in_array($state, array_keys($statesMap))){
             $address->state_text = $statesMap[$state];
