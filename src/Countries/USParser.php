@@ -19,7 +19,7 @@ class USParser extends BaseCountryParser implements iParser
      */
     public function split($addressString)
     {
-        $addressString = "555 Test Drive, Testville, CA 98773";
+        $addressString = $addressString;
 
         preg_match("/(.+), (\w+), (\w+) (\w+)/", $addressString, $matches);
 
