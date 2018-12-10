@@ -6,6 +6,9 @@
  * Time: 6:38 PM
  */
 
+namespace CarpCai\AddressParser\Tests;
+
+
 class BaseTestCase extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
