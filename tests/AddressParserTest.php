@@ -18,25 +18,21 @@ class AddressParserTest extends BaseTestCase
      */
     public function testRightUSAddressParse()
     {
-        $addressArray = [
+        $addressesArray = [
             ['555 Test Drive, Testville, CA 98773', ['555 Test Drive', 'Testville', 'CA', '98773']],
             ['555 Test Drive, Testville, California 98773', ['555 Test Drive', 'Testville', 'CA', '98773']],
             ['555 Test Drive,Testville,CA 98773', ['555 Test Drive', 'Testville', 'CA', '98773']],
             ['555 Test Drive,Testville,CA98773', ['555 Test Drive', 'Testville', 'CA', '98773']],
         ];
 
+        foreach ($addressesArray as $addresses) {
+            $addressRes = Parser::newParse($addresses[0]);
 
-        $address = Parser::newParse('555 Test Drive, Testville, CA 98773');
-
-        $this->assertEquals( 'CA',  $address->state);
-        $this->assertEquals( 'California',  $address->state_text);
-        $this->assertEquals( 'Testville',  $address->city);
-        $this->assertEquals( '555 Test Drive',  $address->addressLine1);
-
-        $address = Parser::newParse('555 Test Drive, Testville, California 98773');
-
-        $this->assertEquals( 'CA',  $address->state_text);
-        $this->assertEquals( 'California',  $address->state_text_label);
+            $this->assertEquals( $addresses[1][0],  $addressRes->addressLine1);
+            $this->assertEquals( $addresses[1][1],  $addressRes->city);
+            $this->assertEquals( $addresses[1][2],  $addressRes->state);
+            $this->assertEquals( $addresses[1][3],  $addressRes->zipcode);
+        }
     }
 
 
