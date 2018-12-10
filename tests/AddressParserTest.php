@@ -8,7 +8,7 @@ namespace CarpCai\AddressParser\Tests;
 
 use CarpCai\AddressParser\Parser;
 
-class AddressParserTest extends BaseTestCase
+class AddressParserTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp(){}
     public function tearDown(){}
