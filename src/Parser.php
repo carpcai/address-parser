@@ -10,8 +10,6 @@ namespace CarpCai\AddressParser;
 
 use CarpCai\AddressParser\Countries\USParser;
 
-include 'autoloader.php';
-
 class Parser
 {
     public $country;
