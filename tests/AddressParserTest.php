@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 class AddressParserTest extends TestCase
 {
 //    public function setUp(){}
-    public function tearDown(){}
+//    public function tearDown(){}
     /**
      * 测试是否能解析美国的地址
      * CarpCai <2018/12/1 12:40 PM>
