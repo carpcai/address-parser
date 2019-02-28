@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 class AddressParserTest extends TestCase
 {
-    public function setUp(){}
+//    public function setUp(){}
     public function tearDown(){}
     /**
      * 测试是否能解析美国的地址
@@ -43,5 +43,7 @@ class AddressParserTest extends TestCase
         $address = Parser::newParse('Test Drive, Testville, CA 98773');
 
         $this->assertEquals( -1,  $address->error_code);
+
+
     }
 }
