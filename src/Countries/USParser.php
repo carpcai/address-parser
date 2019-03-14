@@ -19,10 +19,11 @@ class USParser extends BaseCountryParser implements iParser
      */
     public function split($addressString)
     {
-        preg_match("/(.+),(.+),([A-Za-z_ ]+)(\d+)/", $addressString, $matches);
+        preg_match("/([A-Za-z_ ]*)(.*),([A-Za-z_ ]*),([A-Za-z_ ]*)([0-9-]*)/", $addressString, $matches);
 
-        list($original, $street, $city, $state, $zipcode) = $matches;
+        list($original, $name, $street, $city, $state, $zipcode) = $matches;
         $address = new AddressStruct([
+            'name'         => trim($name),
             'city'         => trim($city),
             'state'        => trim($state),
             'addressLine1' => trim($street),
