@@ -23,7 +23,7 @@ class AddressStruct
     public $addressLine2;
     public $name;
     public $zipcode;
-    public $plus4
+    public $plus4;
 
     public function __construct($addressArray)
     {
