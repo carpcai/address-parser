@@ -28,7 +28,7 @@ class AddressParserTest extends TestCase
             ['555 Test Drive,Testville,CA98773', ['555 Test Drive', 'Testville', 'CA', '98773', '']],
             ['555 Test Drive,Testville,CA', ['555 Test Drive', 'Testville', 'CA', '', '']],
             ['Carp Cai 555 Test Drive,Testville,CA', ['555 Test Drive', 'Testville', 'CA', '', 'Carp Cai']],
-            ['555 Test Drive, Testville, CA 98773-1111', ['555 Test Drive', 'Testville', 'CA', '98773', '', '1111']],
+            ['555 Test Drive, Testville, CA 98773-1111', ['555 Test Drive', 'Testville', 'CA', '98773', '1111']],
         ];
 
         foreach ($addressesArray as $addresses) {
@@ -39,7 +39,7 @@ class AddressParserTest extends TestCase
             $this->assertEquals( $addresses[1][2],  $addressRes->state);
             $this->assertEquals( $addresses[1][3],  $addressRes->zipcode);
             $this->assertEquals( $addresses[1][4],  $addressRes->name);
-            $this->assetEquals ( $addresses[1][5],  $addressReq->plus4;
+            $this->assetEquals ( $addresses[1][5],  $addressReq->plus4);
         }
     }
 
