@@ -23,6 +23,7 @@ class AddressStruct
     public $addressLine2;
     public $name;
     public $zipcode;
+    public $plus4
 
     public function __construct($addressArray)
     {
@@ -36,6 +37,7 @@ class AddressStruct
         $this->addressLine2 = isset($addressArray['addressLine2']) ? $addressArray['addressLine2'] : '';
         $this->zipcode      = isset($addressArray['zipcode']) ? $addressArray['zipcode'] : '';
         $this->name         = isset($addressArray['name']) ? $addressArray['name'] : '';
+        $this->plus4        = isset($addressArray['plus4']) ? $addressArray['plus4'] : '';
 
         return $this;
     }
