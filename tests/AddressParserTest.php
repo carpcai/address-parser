@@ -39,7 +39,7 @@ class AddressParserTest extends TestCase
             $this->assertEquals( $addresses[1][2],  $addressRes->state);
             $this->assertEquals( $addresses[1][3],  $addressRes->zipcode);
             $this->assertEquals( $addresses[1][4],  $addressRes->name);
-            $this->assetEquals ( $addresses[1][5],  $addressReq->plus4);
+            $this->assertEquals( $addresses[1][5],  $addressReq->plus4);
         }
     }
 
