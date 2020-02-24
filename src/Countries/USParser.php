@@ -20,7 +20,7 @@ class USParser extends BaseCountryParser implements iParser
     public function split($addressString)
     {
         preg_match(
-            "/([A-Za-z_ ]*)(.*),([A-Za-z_ ]*),([A-Za-z_ ]*)([0-9-]{5})(-([0-9]{4})){0,1}/",
+            "/([A-Za-z_ ]*)(.*),([A-Za-z_ ]*),([A-Za-z_ ]*)([0-9]*)(-([0-9]{4})){0,1}/",
             $addressString,
             $matches
         );
@@ -33,8 +33,10 @@ class USParser extends BaseCountryParser implements iParser
             'addressLine1' => trim($street),
             'zipcode'      => trim($zipcode),
         ]);
-        if (isset($matches[6])) {
-            $address->plus4 = $matches[6];
+        
+        if (isset($matches[7])) {
+            //var_dump($matches[7]);
+            $address->plus4 = $matches[7];
         }
         $this->_checkAddress($address);
 
