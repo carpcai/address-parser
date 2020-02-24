@@ -19,7 +19,11 @@ class USParser extends BaseCountryParser implements iParser
      */
     public function split($addressString)
     {
-        preg_match("/([A-Za-z_ ]*)(.*),([A-Za-z_ ]*),([A-Za-z_ ]*)([0-9-]*)/", $addressString, $matches);
+        preg_match(
+            "/([A-Za-z_ ]*)(.*),([A-Za-z_ ]*),([A-Za-z_ ]*)([0-9]*)(-([0-9]{4})){0,1}/",
+            $addressString,
+            $matches
+        );
 
         list($original, $name, $street, $city, $state, $zipcode) = $matches;
         $address = new AddressStruct([
@@ -29,6 +33,11 @@ class USParser extends BaseCountryParser implements iParser
             'addressLine1' => trim($street),
             'zipcode'      => trim($zipcode),
         ]);
+        
+        if (isset($matches[7])) {
+            //var_dump($matches[7]);
+            $address->plus4 = $matches[7];
+        }
         $this->_checkAddress($address);
 
         return $address;
@@ -62,6 +71,11 @@ class USParser extends BaseCountryParser implements iParser
         //check zipcode
         if(!is_numeric($address->zipcode)){
             $this->_setError($address, 'the Zip code must be a number');
+        }
+
+        //check plus4
+        if (isset($address->plus4) && !is_numeric($address->plus4)) {
+            $this->_setError($address, 'the plus4 code must be a number');
         }
     }
 }
