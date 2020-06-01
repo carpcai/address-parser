@@ -13,7 +13,7 @@ class BaseCountryParser
     /**
      * CarpCai <2018/12/2 7:57 PM>
      */
-    protected function _setError(&$addressStruct, $error_message)
+    protected function _setError($addressStruct, $error_message)
     {
         $addressStruct->error_code = -1;
         $addressStruct->error_message = $error_message;

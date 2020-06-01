@@ -35,7 +35,6 @@ class USParser extends BaseCountryParser implements iParser
         ]);
         
         if (isset($matches[7])) {
-            //var_dump($matches[7]);
             $address->plus4 = $matches[7];
         }
         $this->_checkAddress($address);
@@ -44,37 +43,41 @@ class USParser extends BaseCountryParser implements iParser
     }
 
     /**
-     * 检查地址真实性
-     * Check address authenticity
+     * 检查地址真实性 (Check address authenticity)
      * CarpCai <2018/12/2 7:52 PM>
+     *
+     * @param AddressStruct $address
+     * @return void
      */
-    private function _checkAddress(&$address)
+    private function _checkAddress($address)
     {
         //check state
-        $statesMap = json_decode(file_get_contents(__DIR__ . '/../Json/US_states.json'), true);
+        $statesMap = UsaData::ALL_STATES;
         $state = $address->state;
-        if(in_array($state, array_keys($statesMap))){
+        if (isset($statesMap[$state])) {
+            // Check if we have a valid 2-char state code
             $address->state_text = $statesMap[$state];
-        }else if (in_array($state, array_values($statesMap))){
-            $address->state = array_flip($statesMap)[$state];
+        } elseif ($stateKey = array_search($state, $statesMap, true)) {
+            // Try checking for the full state text
+            $address->state = $stateKey;
             $address->state_text = $state;
-        }else{
+        } else {
             $this->_setError($address, 'The state does not exist');
         }
 
         //check addressLine1
         list($HouseNumber) = explode(' ', $address->addressLine1);
-        if(!is_numeric($HouseNumber)){
+        if (!is_numeric($HouseNumber)) {
             $this->_setError($address, 'The address must start with a number');
         }
 
         //check zipcode
-        if(!is_numeric($address->zipcode)){
+        if (!is_numeric($address->zipcode)) {
             $this->_setError($address, 'the Zip code must be a number');
         }
 
         //check plus4
-        if (isset($address->plus4) && !is_numeric($address->plus4)) {
+        if (!empty($address->plus4) && !is_numeric($address->plus4)) {
             $this->_setError($address, 'the plus4 code must be a number');
         }
     }

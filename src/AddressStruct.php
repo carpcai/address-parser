@@ -16,7 +16,11 @@ class AddressStruct
     public $error_message;
 
     public $country;
+
+    /** @var string 2-char state code (abbreviation). E.g.: NY */
     public $state;
+
+    /** @var string Full name of the state, no abbreviation. E.g.: New York */
     public $state_text;
     public $city;
     public $addressLine1;
@@ -28,7 +32,7 @@ class AddressStruct
     public function __construct($addressArray)
     {
         if (!$addressArray || !is_array($addressArray)) {
-            return true;
+            return;
         }
         $this->country      = isset($addressArray['country']) ? $addressArray['country'] : self::US;
         $this->state        = isset($addressArray['state']) ? $addressArray['state'] : '';
@@ -38,8 +42,5 @@ class AddressStruct
         $this->zipcode      = isset($addressArray['zipcode']) ? $addressArray['zipcode'] : '';
         $this->name         = isset($addressArray['name']) ? $addressArray['name'] : '';
         $this->plus4        = isset($addressArray['plus4']) ? $addressArray['plus4'] : '';
-
-        return $this;
     }
-
 }

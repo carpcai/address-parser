@@ -16,52 +16,51 @@ class Parser
 
     /**
      * CarpCai <2018/12/1 10:46 PM>
-     * @param $addressString
-     * @param string $country
-     * @return AddressStruct
+     * @param string $country Country to load assumptions for. Currently, only US is supported.
      */
     public function __construct($country = AddressStruct::US)
     {
         $this->setCountry($country);
     }
 
+    /**
+     * @param string $country Two letter country code.
+     *
+     * @return $this
+     */
     public function setCountry($country)
     {
-        if (in_array($country, [AddressStruct::US])) {
+        if (in_array($country, [AddressStruct::US], true)) {
             $this->country = AddressStruct::US;
-            return $this;
         }
         return $this;
     }
 
     /**
-     *
      * CarpCai <2018/12/1 10:20 PM>
+     *
+     * @param string $addressString
+     * @param string $country Two letter country code.
+     *
+     * @return AddressStruct
      */
-    static function newParse($addressString, $country = AddressStruct::US)
+    public static function newParse($addressString, $country = AddressStruct::US)
     {
         $class = new static($addressString);
         $class->setCountry($country);
-        return $class->_parse($addressString);
+        return $class->parse($addressString);
     }
 
     /**
      * CarpCai <2018/12/1 10:19 PM>
+     *
+     * @param string $addressString
+     *
+     * @return AddressStruct
      */
     public function parse($addressString)
     {
-        return $this->_parse($addressString);
-    }
-
-    /**
-     * CarpCai <2018/12/1 10:46 PM>
-     * @param $addressString
-     * @param string $country
-     * @return AddressStruct
-     */
-    private function _parse($addressString, $country = AddressStruct::US)
-    {
-        //TODO: 根据不同国家生成不同实例
+        //TODO: 根据不同国家生成不同实例 (Generate different examples according to different countries)
         return (new USParser())->split($addressString);
     }
 }

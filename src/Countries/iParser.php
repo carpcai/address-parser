@@ -8,9 +8,15 @@
 
 namespace CarpCai\AddressParser\Countries;
 
+use CarpCai\AddressParser\AddressStruct;
 
 interface iParser
 {
-
+    /**
+     * @param string $address Input address string to be parsed
+     *
+     * @return AddressStruct Returns an AddressStruct; if a parse error occurred, the AddressStruct will have an
+     *                       error_code and error_message set on it.
+     */
     public function split($address);
 }
