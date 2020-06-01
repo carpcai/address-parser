@@ -9,23 +9,40 @@
 namespace CarpCai\AddressParser\Countries;
 
 use CarpCai\AddressParser\AddressStruct;
+use CarpCai\AddressParser\Data\UsaData;
 
 class USParser extends BaseCountryParser implements iParser
 {
     /**
      * CarpCai <2018/12/1 10:47 PM>
-     * @param $addressString
+     * @param string $addressString
      * @return AddressStruct
      */
     public function split($addressString)
     {
+        // Convert line breaks to commas
+        $addressString = str_replace(["\r\n", "\n", "\r"], ", ", $addressString);
+
+        $matches = [];
+
+        // Example input: John Doe, 555 Test Drive, Testville, CA 98773
         preg_match(
             "/([A-Za-z_ ]*)(.*),([A-Za-z_ ]*),([A-Za-z_ ]*)([0-9]*)(-([0-9]{4})){0,1}/",
             $addressString,
             $matches
         );
 
+        if (!$matches || count($matches) < 6) {
+            $address = new AddressStruct([]);
+            $address->error_code = -1;
+            $address->error_message = 'Failed to match regular expression.';
+            return $address;
+        }
+
         list($original, $name, $street, $city, $state, $zipcode) = $matches;
+
+        $street = ltrim($street, ", ");
+
         $address = new AddressStruct([
             'name'         => trim($name),
             'city'         => trim($city),
