@@ -59,10 +59,23 @@ class AddressParserTest extends TestCase
 
     }
 
-    public function testWrongUSAddressParse()
+    public function providerForParseErrors()
     {
-        $address = Parser::newParse('Test Drive, Testville, CA 98773');
+        return [
+            ['Test Drive, Testville, CA 98773', -1, 'The address must start with a number'],
+            ['I don\'t match anything', -1, 'Failed to match regular expression'],
+            ['555 Test Drive, Testville, YX 98773-1111', -1, 'The state does not exist'],
+        ];
+    }
 
-        $this->assertSame( -1,  $address->error_code);
+    /**
+     * @dataProvider providerForParseErrors
+     */
+    public function testWrongUSAddressParse($inputString, $errorCode, $errorMessage)
+    {
+        $address = Parser::newParse($inputString);
+
+        $this->assertSame($errorCode,  $address->error_code);
+        $this->assertSame($errorMessage,  $address->error_message);
     }
 }

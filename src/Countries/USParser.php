@@ -35,7 +35,7 @@ class USParser extends BaseCountryParser implements iParser
         if (!$matches || count($matches) < 6) {
             $address = new AddressStruct([]);
             $address->error_code = -1;
-            $address->error_message = 'Failed to match regular expression.';
+            $address->error_message = 'Failed to match regular expression';
             return $address;
         }
 

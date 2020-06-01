@@ -9,6 +9,7 @@
 namespace CarpCai\AddressParser;
 
 use CarpCai\AddressParser\Countries\USParser;
+use CarpCai\AddressParser\Data\UsaData;
 
 class Parser
 {
@@ -18,7 +19,7 @@ class Parser
      * CarpCai <2018/12/1 10:46 PM>
      * @param string $country Country to load assumptions for. Currently, only US is supported.
      */
-    public function __construct($country = AddressStruct::US)
+    public function __construct($country = UsaData::COUNTRY_CODE)
     {
         $this->setCountry($country);
     }
@@ -30,8 +31,8 @@ class Parser
      */
     public function setCountry($country)
     {
-        if (in_array($country, [AddressStruct::US], true)) {
-            $this->country = AddressStruct::US;
+        if (in_array($country, [UsaData::COUNTRY_CODE], true)) {
+            $this->country = $country;
         }
         return $this;
     }
@@ -44,7 +45,7 @@ class Parser
      *
      * @return AddressStruct
      */
-    public static function newParse($addressString, $country = AddressStruct::US)
+    public static function newParse($addressString, $country = UsaData::COUNTRY_CODE)
     {
         $class = new static($addressString);
         $class->setCountry($country);

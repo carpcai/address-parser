@@ -7,6 +7,8 @@ namespace CarpCai\AddressParser\Data;
  */
 class UsaData
 {
+    const COUNTRY_CODE = 'US';
+
     /** @var string[] Map of 2 letter state code to the full state name */
     const ALL_STATES = [
         'AL' => 'Alabama',
