@@ -29,7 +29,7 @@ class USParser extends BaseCountryParser implements iParser
         $address = new AddressStruct([
             'name'         => trim($name),
             'city'         => trim($city),
-            'state'        => trim($state),
+            'state'        => strtoupper(trim($state)),
             'addressLine1' => trim($street),
             'zipcode'      => trim($zipcode),
         ]);
