@@ -74,7 +74,7 @@ class USParser extends BaseCountryParser implements iParser
         }
 
         //check plus4
-        if (isset($address->plus4) && !is_numeric($address->plus4)) {
+        if (isset($address->plus4) && $address->plus4 && !is_numeric($address->plus4)) {
             $this->_setError($address, 'the plus4 code must be a number');
         }
     }
